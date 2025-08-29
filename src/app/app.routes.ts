@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Start } from './pages/start/start';
-import { UserSelected } from './pages/user-selected/user-selected';
+import { Start } from './pages/gameplay/start/start';
+import { UserSelected } from './pages/gameplay/user-selected/user-selected';
 import { Result } from './pages/gameplay/result/result';
 import { Login } from './pages/auth/login/login';
 import { Signup } from './pages/auth/signup/signup';
