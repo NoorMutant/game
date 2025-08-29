@@ -1,0 +1,24 @@
+<div class="button_wrapper">
+    <div class="user_pick_column">
+        <div *ngIf="selected === 1" class="button_paper button_radius">
+            <img src="/icons/icon-paper.svg" alt="">
+        </div>
+        <div *ngIf="selected === 2" class="button_scissors button_radius">
+            <img src="/icons/icon-scissors.svg" alt="">
+        </div>
+        <div *ngIf="selected === 3" class="button_rock button_radius">
+            <img src="/icons/icon-rock.svg" alt="">
+        </div>
+        <div class="picked-label button_wrapper letter-up barlow-semi-condensed-thin">
+            <p>You Picked</p>
+        </div>
+    </div>
+    <div class="user_pick_column">
+        <div class="button_radius bg-black">
+        </div>
+        <div class="picked-label button_wrapper letter-up barlow-semi-condensed-thin">
+            <p>house Picked</p>
+        </div>
+    </div>
+
+</div>

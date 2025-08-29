@@ -1,0 +1,29 @@
+<section id="main_container" class="outer-screen">
+  <div class="rulesPopUp" *ngIf="rules">
+    <h2 class="barlow-semi-condensed-bold">RULES</h2>
+    <img class="rules_img" src="/icons/image-rules.svg" alt="rules">
+    <button (click)="closeRules()"><img class="close_button" src="/icons/icon-close.svg" alt="close icon"></button>
+  </div>
+  <div class="main-board">
+    <button *ngIf="router.url !== '/login' && router.url !== '/signup'" (click)="logout()" class="logout barlow-semi-condensed-bold">logout</button>
+    <div class="main_flex">
+      <img src="/icons/logo.svg" alt="logo" class="logo">
+      
+      <div class="high-score barlow-semi-condensed-bold">
+        <a (click)="toprofile()"><h2>{{userName}}</h2></a>
+        <h5>Highest Score: {{highest}}</h5>
+      </div>
+      <div class="score ">
+        <h6 class="barlow-semi-condensed-thin letter-up">Score</h6>
+        <h2 class=".barlow-semi-condensed-bold">
+          {{this.score}}
+        </h2>
+      </div>
+    </div>
+  </div>
+  
+  <router-outlet>
+
+  </router-outlet>
+  <button (click)="openRules()" class="rules barlow-semi-condensed-thin letter-up">Rules</button>
+</section>

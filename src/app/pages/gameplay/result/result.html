@@ -1,0 +1,38 @@
+<div class="button_wrapper">
+    <div class="user_pick_column">
+        <div *ngIf="selected === 1" class="button_paper button_radius" [ngClass]="{'winner-glow': user_winner === 1}">
+            <img src="/icons/icon-paper.svg" alt="">
+        </div>
+        <div *ngIf="selected === 2" class="button_scissors button_radius" [ngClass]="{'winner-glow': user_winner === 1}">
+            <img src="/icons/icon-scissors.svg" alt="">
+        </div>
+        <div *ngIf="selected === 3" class="button_rock button_radius" [ngClass]="{'winner-glow': user_winner === 1}">
+            <img src="/icons/icon-rock.svg" alt="">
+        </div>
+        <div class="picked-label button_wrapper letter-up barlow-semi-condensed-thin">
+            <p>You Picked</p>
+        </div>
+    </div>
+    <div class="user_pick_column">
+        <div *ngIf="computer === 1" class="button_paper button_radius" [ngClass]="{'winner-glow': user_winner === 2}">
+            <img src="/icons/icon-paper.svg" alt="">
+        </div>
+        <div *ngIf="computer === 2" class="button_scissors button_radius" [ngClass]="{'winner-glow': user_winner === 2}">
+            <img src="/icons/icon-scissors.svg" alt="">
+        </div>
+        <div *ngIf="computer === 3" class="button_rock button_radius" [ngClass]="{'winner-glow': user_winner === 2}">
+            <img src="/icons/icon-rock.svg" alt="">
+        </div>
+        <div class="picked-label button_wrapper letter-up barlow-semi-condensed-thin">
+            <p>house Picked</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="play_again">
+    <h1 class="barlow-semi-condensed-bold letter-up">
+        {{ user_winner === 1 ? 'You win' : user_winner === 2 ? 'You lose' : "It's a draw" }}
+    </h1>
+    <button (click)="again()" class="barlow-semi-condensed-thin letter-up">Play Again</button>
+</div>

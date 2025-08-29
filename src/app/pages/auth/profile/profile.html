@@ -1,0 +1,37 @@
+<div class=" barlow-semi-condensed-bold">
+  <p>Update Profile</p>
+  
+  <form #myForm="ngForm" (ngSubmit)="attemptNameChange()" class=" signup barlow-semi-condensed-thin">
+    <input 
+      name="username" 
+      maxlength="18"
+      minlength="5"
+      [(ngModel)]="userName" 
+      placeholder="Enter Username" 
+      required 
+      (input)="clearMessages()"
+      autocomplete="username" />
+    
+    <input 
+      name="userPassword" 
+      minlength="9"
+      maxlength="25"
+      [(ngModel)]="userPassword" 
+      placeholder="Enter Password" 
+      type="password" 
+      required 
+      (input)="clearMessages()"
+      autocomplete="current-password" />
+    
+    <button type="submit" [disabled]="myForm.invalid">Update</button>
+    
+    <button (click)="goback()">Go Back</button>
+  </form>
+
+  <!-- Error message display -->
+  <div class="message-container">
+    <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
+    <p *ngIf="successMessage" class="success-message">{{successMessage}}</p>
+  </div>
+
+</div>

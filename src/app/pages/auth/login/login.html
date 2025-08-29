@@ -1,0 +1,37 @@
+<div class="barlow-semi-condensed-bold">
+  <h2>Please login to your account</h2>
+  
+  <form #myForm="ngForm" (ngSubmit)="attemptLogin()" class="signup barlow-semi-condensed-thin">
+    <input 
+      name="username" 
+      maxlength="18"
+      minlength="5"
+      [(ngModel)]="userName" 
+      placeholder="Enter Username" 
+      required 
+      (input)="clearMessages()"
+      autocomplete="username" />
+    
+    <input 
+    minlength="9"
+      maxlength="25"
+      name="userPassword" 
+      [(ngModel)]="userPassword" 
+      placeholder="Enter Password" 
+      type="password" 
+      required 
+      (input)="clearMessages()"
+      autocomplete="current-password" />
+    
+    <button type="submit" [disabled]="myForm.invalid">Login</button>
+    
+    <button type="button" (click)="goToSignup()">Don't have account? Sign Up</button>
+  </form>
+
+  <!-- Error message display -->
+  <div class="message-container">
+    <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
+    <p *ngIf="successMessage" class="success-message">{{successMessage}}</p>
+  </div>
+
+</div>

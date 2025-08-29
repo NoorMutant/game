@@ -1,0 +1,38 @@
+<div class="barlow-semi-condensed-bold">
+  <h2>Please input your details</h2>
+  <form #myForm="ngForm" (ngSubmit)="userprint()" class="signup barlow-semi-condensed-thin">
+    <input
+    minlength="5"
+     maxlength="18"
+      name="username" 
+      [(ngModel)]="userName"
+       placeholder="Input Name" 
+       required />
+    <input
+    min="18"
+    max="100"
+     name="userAge" 
+     [(ngModel)]="userAge" 
+     placeholder="Input age Must be greater than 18" 
+     type="number" 
+     required />
+    <input  
+    minlength="9"
+    maxlength="25" 
+    name="userPassword" 
+    [(ngModel)]="userPassword"
+     placeholder="Enter Password (More than 8)" 
+     type="password" 
+     required />
+    <button 
+    type="submit" 
+    [disabled]="myForm.invalid">
+    Sign Up
+    </button>
+    <button (click)="login()">
+      Log In
+    </button>
+
+  </form>
+    <p>{{errorMessage}}</p>
+</div>
