@@ -12,6 +12,7 @@ export class Start implements OnInit {
   selected: number = 0;
   UserFound: Boolean = false;
 
+
   constructor(private router: Router, private game: Game) {
     game.setStep("1");
   }
@@ -51,5 +52,8 @@ private loadUserScores(userId: string) {
   onClick(x: number) {
     this.selected = x;
     this.router.navigate(['/user-selected', this.selected]);
+  }
+   navigateToGallery(){
+    this.router.navigate(['/gallery']);
   }
 }

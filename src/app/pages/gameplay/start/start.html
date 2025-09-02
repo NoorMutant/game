@@ -1,18 +1,21 @@
 <!-- <div *ngIf="showrules" class="rules_window">
-
+    
 </div> -->
-
-<div class="button_wrapper">
-    <div  class="bg_button">
-        <img src="/icons/bg-triangle.svg" alt="">
+<div class="start">
+    
+    <div class="button_wrapper">
+        <div  class="bg_button">
+            <img src="/icons/bg-triangle.svg" alt="">
+        </div>
+        <div (click)="onClick(1)" class="button_paper button_radius">
+            <img src="/icons/icon-paper.svg" alt="">
+        </div>
+        <div (click)="onClick(2)"  class="button_scissors button_radius">
+            <img src="/icons/icon-scissors.svg" alt="">
+        </div>
+        <div (click)="onClick(3)"  class="button_rock button_radius">
+            <img src="/icons/icon-rock.svg" alt="">
+        </div>
     </div>
-    <div (click)="onClick(1)" class="button_paper button_radius">
-        <img src="/icons/icon-paper.svg" alt="">
-    </div>
-    <div (click)="onClick(2)"  class="button_scissors button_radius">
-        <img src="/icons/icon-scissors.svg" alt="">
-    </div>
-    <div (click)="onClick(3)"  class="button_rock button_radius">
-        <img src="/icons/icon-rock.svg" alt="">
-    </div>
+    <button (click)="navigateToGallery()" class="rules barlow-semi-condensed-thin letter-up">Gallery</button>
 </div>

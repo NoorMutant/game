@@ -8,10 +8,12 @@ export class Game {
   private scoreSubject = new BehaviorSubject<number>(0);
   private highScoreSubject = new BehaviorSubject<number>(0);
   private myNameSubject = new BehaviorSubject<string>("");
+ 
   
   score$ = this.scoreSubject.asObservable();
   highest$ = this.highScoreSubject.asObservable();
   myName$ = this.myNameSubject.asObservable();
+
 
   constructor() {}
 

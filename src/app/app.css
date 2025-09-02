@@ -2,7 +2,7 @@
 
 #main_container {
     display: flex;
-    row-gap: 40px;
+    row-gap: 5px;
     flex-direction: column;
     align-items: center;
     margin: auto;
@@ -42,7 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 5%;
+    margin: auto 5%;
 
 }
 .score {
@@ -73,85 +73,12 @@
 }
 .logout{
     position: absolute;
-    transform: translate(28px, 5px);
+    transform: translate(35px, 0px);
     background-color:var(--borders);
     color: var(--score_text);
     border-radius: 5px;
+    transition: all 0.5s ease-in-out;
 }
 .logout:hover{
     background-color: red;
-}
-
-.rule-wrap{
-    justify-items: center;
-}
-
-.rules {
-
-    padding: 2%;
-    text-align: center;
-    border: 3px solid var(--borders);
-    color: white;
-    border-radius: 10px;
-    width: 30%;
-    background: none;
-    cursor: pointer;
-
-    display: block;
-}
-
-
-.rules:hover {
-    text-decoration: underline;
-}
-
-.rulesPopUp {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    overflow: hidden;
-
-        @media screen and (min-width: 1300px) {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 500px;
-        height: 70vh;
-        border-radius: 20px;
-    }
-}
-
-
-.rulesPopUp h2 {
-    color: var(--dark_text);
-
-    font-size: 24px;
-}
-
-.rulesPopUp .rules_img {
-    width: 80%;
-    max-width: 400px;
-    margin: 5vh auto;
-}
-
-
-.rulesPopUp button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.rulesPopUp button img {
-
-    padding: 10%;
-    width: 30px;
-    height: 30px;
 }

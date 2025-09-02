@@ -37,3 +37,65 @@
         margin-top: 1rem;
     }
 }
+.button_rock{
+     border:20px solid var(--rock_rgb);
+     box-shadow:
+        inset 0px 5px 1px rgba(0, 0, 0, 0.1), 0px 5px 1px rgb(151, 6, 33);
+
+    @media screen and (max-width: 600px) {
+           border: 17px solid var(--rock_rgb);
+    }
+    @media screen and (max-width: 400px) {
+           border: 15px solid var(--rock_rgb);
+    }
+    
+}
+.button_scissors{
+    border:20px solid var(--scissors_rgb);
+    box-shadow:
+        inset 0px 5px 1px rgba(0, 0, 0, 0.1), 0px 5px 1px hsl(39, 97%, 35%);
+
+    @media screen and (max-width: 600px) {
+           border: 17px solid var(--scissors_rgb);
+    }
+    @media screen and (max-width: 400px) {
+           border: 15px solid var(--scissors_rgb);
+    }
+}
+.button_paper{
+    border:20px solid var(--paper_rgb);
+    box-shadow:
+        inset 0px 5px 1px rgba(0, 0, 0, 0.1), 0px 5px 1px hsl(230, 62%, 46%);
+
+    @media screen and (max-width: 600px) {
+           border: 17px solid var(--paper_rgb);
+    }
+    @media screen and (max-width: 400px) {
+           border: 15px solid var(--paper_rgb);
+    }
+}
+
+  .button_radius {
+    @media screen and (max-width: 1200px) {
+      height: 130px;
+      width: 130PX;
+    }
+    @media screen and (max-width: 900px) {
+            height: 95px;
+            width: 95PX;
+            img{
+                width: 50%;
+            }
+    }
+    @media screen and (max-width: 600px) {
+            height: 100px;
+            width: 100PX;
+            img{
+                width: 50%;
+            }
+    }
+    @media screen and (max-width: 400px) {
+            height: 65px;
+            width: 65px;
+    }
+    }

@@ -27,9 +27,7 @@ ngOnInit() {
 const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
 
 if (navEntries.length > 0 && navEntries[0].type === 'back_forward') {
-  // ✅ This means the user navigated using the back/forward button
-  // this.router.navigate(['']); // Navigate home or wherever you want
-  // return;
+
 }
   if(sessionStorage.getItem("step") =="2"){
     this.router.navigate(['']);

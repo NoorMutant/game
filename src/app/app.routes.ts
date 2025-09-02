@@ -8,6 +8,7 @@ import { Signup } from './pages/auth/signup/signup';
 import { Profile } from './pages/auth/profile/profile';
 import { preventBackGuard } from './guards/prevent-back-guard';
 import { flowSafetyGuard } from './guards/flow-safety-guard';
+import { Gallery } from './gallery/gallery';
 
 
 export const routes: Routes = [
@@ -17,6 +18,13 @@ export const routes: Routes = [
         canActivate:[flowSafetyGuard],
         // runGuardsAndResolvers: 'always'
     },
+    {
+        path: 'gallery' ,
+        component: Gallery ,
+        canActivate:[flowSafetyGuard],
+
+    },
+
     {
         path:"user-selected/:selected",
         component: UserSelected,
@@ -48,7 +56,7 @@ export const routes: Routes = [
         path: '**', 
         component: Start ,
         canActivate:[flowSafetyGuard]
-    }
+    },
 
     
 ];

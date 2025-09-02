@@ -4,10 +4,13 @@ import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Game } from './service/game';
+import { Apifetch } from './service/apifetch';
+
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgIf,FormsModule],
+  imports: [RouterOutlet, NgIf, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -17,14 +20,20 @@ export class App {
   score: number =0;
   rules: boolean = false;
   private sub:Subscription;
+  private url:Subscription;
   private highSub:Subscription;
   protected currentName:Subscription;
   UserFound:Boolean=false;
   highest:number = 0;
+  onGallery:boolean=false;
 
-  constructor(private game: Game,public router:Router) {
+
+  constructor(private game: Game,public router:Router,private gallery:Apifetch) {
     this.sub = this.game.score$.subscribe(score =>{
     this.score = score;
+  });  
+    this.url = this.gallery.myUrl$.subscribe(url =>{
+    this.onGallery = url;
   });  
     this.currentName = this.game.myName$.subscribe(name =>{
     this.userName = name;
@@ -34,6 +43,8 @@ export class App {
   });  
 }
  ngOnInit() {
+  
+  console.log(this.router.url);
 
   let userFoundValue =Number( localStorage.getItem("currentUserId"));
   if (userFoundValue != 0) {
@@ -67,6 +78,8 @@ private loadCurrentUserScores(userId: string) {
   openRules(){
     this.rules = true;
   }
+
+
   closeRules(){
     this.rules = false;
   }
