@@ -1,7 +1,21 @@
 <!-- <div *ngIf="showrules" class="rules_window">
     
 </div> -->
-<div class="start">
+
+<!-- <div *ngIf=" !isStartScreenVisible && isUserVisible ">
+    <app-user-selected></app-user-selected>
+</div>
+<div *ngIf="!isUserVisible && !isStartScreenVisible">
+    <app-result></app-result>
+</div> -->
+
+@if(!this.isStartScreen && !isUserVisible){
+    <app-result></app-result>
+}
+@else if(!this.isStartScreen && this.isUserVisible){
+   <app-user-selected></app-user-selected>
+}@else{
+    <div class="start" >
     
     <div class="button_wrapper">
         <div  class="bg_button">
@@ -19,3 +33,4 @@
     </div>
     <button (click)="navigateToGallery()" class="rules barlow-semi-condensed-thin letter-up">Gallery</button>
 </div>
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
+import { Game } from '../../../service/game';
 
 @Component({
   selector: 'app-user-selected',
@@ -11,14 +12,7 @@ import { CommonModule, NgIf } from '@angular/common';
 export class UserSelected {
    selected: number;
 
-  constructor(private route: ActivatedRoute,private router:Router) {
-    this.selected = Number(this.route.snapshot.paramMap.get('selected'));
-  }
-
-  ngOnInit() {
-    setTimeout(() => {
-
-      this.router.navigate(['/result',this.selected], { replaceUrl: true });
-    }, 5000);
+  constructor(private route: ActivatedRoute,private router:Router,private game: Game) {
+    this.selected = this.game.userSelectedValue;
   }
 }

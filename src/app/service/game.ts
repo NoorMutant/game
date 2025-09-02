@@ -8,11 +8,14 @@ export class Game {
   private scoreSubject = new BehaviorSubject<number>(0);
   private highScoreSubject = new BehaviorSubject<number>(0);
   private myNameSubject = new BehaviorSubject<string>("");
+
+
  
   
   score$ = this.scoreSubject.asObservable();
   highest$ = this.highScoreSubject.asObservable();
   myName$ = this.myNameSubject.asObservable();
+  userSelectedValue:number = 0;
 
 
   constructor() {}
@@ -84,5 +87,7 @@ setHighScore(newHighScore: number) {
   localAllUserData(x: string) {
     localStorage.setItem("allUsersData", x);
   }
-  
+  setUserSelectedValue(x:number){
+    this.userSelectedValue = x;
+  }
 }

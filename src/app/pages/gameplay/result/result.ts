@@ -12,7 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './result.html',
   styleUrl: './result.css'
 })
-export class Result implements OnInit,OnDestroy{
+export class Result implements OnInit{
   selected: number = 0;
   user_winner: number = 0; // 0 draw, 1 user win, 2 user lose
   computer: number = 0;
@@ -20,7 +20,9 @@ export class Result implements OnInit,OnDestroy{
 
   private destroy$ = new Subject<void>(); 
   
-  constructor(private route: ActivatedRoute, private router: Router, private game: Game) {}
+  constructor(private route: ActivatedRoute, private router: Router, private game: Game) {
+
+  }
 
 ngOnInit() {
  
@@ -33,10 +35,7 @@ if (navEntries.length > 0 && navEntries[0].type === 'back_forward') {
     this.router.navigate(['']);
   }
   else{
-    this.route.paramMap
-        .pipe(takeUntil(this.destroy$)) 
-        .subscribe(params => {
-          this.selected = Number(params.get('selected'));
+      this.selected = this.game.userSelectedValue;
       this.computer = Math.floor(Math.random() * 3) + 1;
       if (this.selected === this.computer) {
         this.user_winner = 0; // draw
@@ -62,18 +61,18 @@ if (navEntries.length > 0 && navEntries[0].type === 'back_forward') {
       console.log('user_winner:', this.user_winner);
       this.game.setStep("2");
       // history.replaceState({}, '', '/result');
-    });
+   
   }
 }
 
-  again() {
+  again(){
     this.router.navigate(['']);
   }
 
-  ngOnDestroy(){
-    this.destroy$.next();  
-    this.destroy$.complete();
-  }
+  // ngOnDestroy(){
+  //   this.destroy$.next();  
+  //   this.destroy$.complete();
+  // }
 }
 
 

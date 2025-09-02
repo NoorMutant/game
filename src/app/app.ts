@@ -44,6 +44,14 @@ export class App {
 }
  ngOnInit() {
   
+  const currentUserId = localStorage.getItem("currentUserId");
+  const currentUrl = this.router.url;
+
+  if (!currentUserId) {
+     if (currentUrl !== '/login') 
+        this.router.navigate(['/login']);
+  }
+  
   console.log(this.router.url);
 
   let userFoundValue =Number( localStorage.getItem("currentUserId"));
@@ -83,6 +91,7 @@ private loadCurrentUserScores(userId: string) {
   closeRules(){
     this.rules = false;
   }
+  
   logout() {
   localStorage.removeItem("currentUserId");
   localStorage.removeItem("currentUserName");
