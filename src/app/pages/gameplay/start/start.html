@@ -9,14 +9,13 @@
     <app-result></app-result>
 </div> -->
 
-@if(!this.isStartScreen && !isUserVisible){
-    <app-result></app-result>
+@if(!isStartScreen && !isUserVisible){
+    <app-result (playAgain)="playAgain()"></app-result>
 }
-@else if(!this.isStartScreen && this.isUserVisible){
+@else if(!isStartScreen && isUserVisible){
    <app-user-selected></app-user-selected>
 }@else{
     <div class="start" >
-    
     <div class="button_wrapper">
         <div  class="bg_button">
             <img src="/icons/bg-triangle.svg" alt="">

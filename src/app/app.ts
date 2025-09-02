@@ -46,7 +46,6 @@ export class App {
   
   const currentUserId = localStorage.getItem("currentUserId");
   const currentUrl = this.router.url;
-
   if (!currentUserId) {
      if (currentUrl !== '/login') 
         this.router.navigate(['/login']);
@@ -60,26 +59,11 @@ export class App {
     // this.userName = sessionStorage.getItem("name") || "";
     this.userAge = Number(sessionStorage.getItem("age"));
     const currentUserId = localStorage.getItem("currentUserId");
-    if (currentUserId) {
+    if (currentUserId){
       this.loadCurrentUserScores(currentUserId);
     }
   } else {
     this.game.setUserFound("0");
-  }
-}
-
-
-private loadCurrentUserScores(userId: string) {
-  const allUsersData = localStorage.getItem("allUsersData");
-  if (allUsersData) {
-    const users = JSON.parse(allUsersData);
-    const currentUser = users.find((user: any) => user.id === Number(userId));
-    
-    if (currentUser) {
-      this.game.setUserName(currentUser.name);
-      this.game.setScore(currentUser.currentScore || 0);
-      this.game.setHighScore(currentUser.highestScore || 0);
-    }
   }
 }
 
@@ -100,10 +84,22 @@ private loadCurrentUserScores(userId: string) {
   this.game.setUserName("");
   this.game.setScore(0);
   this.game.setHighScore(0);
-  this.router.navigate(['/signup']); 
+  this.router.navigate(['/login']); 
 }
   toprofile(){
     this.router.navigate(['/profile']);
   }
-  
+    loadCurrentUserScores(userId: string) {
+  const allUsersData = localStorage.getItem("allUsersData");
+  if (allUsersData) {
+    const users = JSON.parse(allUsersData);
+    const currentUser = users.find((user: any) => user.id === Number(userId));
+    
+    if (currentUser) {
+      this.game.setUserName(currentUser.name);
+      this.game.setScore(currentUser.currentScore || 0);
+      this.game.setHighScore(currentUser.highestScore || 0);
+    }
+  }
+}
 }

@@ -20,7 +20,7 @@ export class Profile {
   private currentName:Subscription;
   currentUserName:string|null =null;
   currentUserPass:string|null =null;
-  currentUserId:string|null =null;
+  currentUserId:string | null="";
 
 
     
@@ -39,6 +39,7 @@ export class Profile {
   }
 
     ngOnInit() {
+      debugger;
     let userFoundValue = sessionStorage.getItem("UserFound");
     if (userFoundValue === "0") {
       this.UserFound = false;
@@ -49,7 +50,9 @@ export class Profile {
       this.UserFound = true;
     }
     this.currentUserName = localStorage.getItem("currentUserName");
-    this.currentUserId = localStorage.getItem("currentUserId");
+    if(true){
+      this.currentUserId = localStorage.getItem("currentUserId");
+    }
 
     const storedData = localStorage.getItem("allUsersData");
     if (storedData) {
@@ -116,12 +119,12 @@ export class Profile {
 
 
    changeName(user: any) {
-  console.log('Changing name for user:', user.name);
+    console.log('Changing name for user:', user.name);
     const userIndex = this.allUsersData.findIndex((u: any) => u.id === user.id);
     if (userIndex !== -1) {
       this.allUsersData[userIndex].name = this.userName;
     }
-    localStorage.setItem("allUsersData", JSON.stringify(this.allUsersData));
+    this.pushUserData(this.allUsersData);
     localStorage.setItem("currentUserId", String(user.id));
     this.game.setUserName(this.userName);
 
@@ -146,8 +149,34 @@ export class Profile {
   goback(){
     this.router.navigate([""]);
   }
+  resetCurrentScore(){
+    this.pullUserData();
+    const user = this.allUsersData.findIndex(user => user.id === Number(this.currentUserId));
+    this.allUsersData[user].currentScore = 0;
+    this.pushUserData(this.allUsersData);
+    console.log(`score updated`)
+    this.game.setScore(0);
+    this.router.navigate([""]);
 
+  }
+  resetHighScore(){
+    this.pullUserData()
+    const user = this.allUsersData.findIndex(user => user.id === Number(this.currentUserId));
+    this.allUsersData[user].highestScore = 0;
+    this.pushUserData(this.allUsersData)
+    console.log(`Highscore updated`)
+    this.game.setHighScore(0);
+    this.router.navigate([""]);
+    // this.game.loadCurrentUserScores(user.toString())
+  }
 
-
-
+  pushUserData(x:any){
+    localStorage.setItem("allUsersData", JSON.stringify(x));
+  }
+  pullUserData(){
+    const storedData = localStorage.getItem("allUsersData");
+    if (storedData) {
+      this.allUsersData = JSON.parse(storedData);
+    }
+  }
 }

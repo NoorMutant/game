@@ -90,4 +90,8 @@ setHighScore(newHighScore: number) {
   setUserSelectedValue(x:number){
     this.userSelectedValue = x;
   }
+
+  //for app
+
+
 }

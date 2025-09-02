@@ -18,6 +18,12 @@ export const flowSafetyGuard: CanActivateFn = (route, state) => {
     backButtonPressed = false; // reset for next time
     return false;
   }
+  if (localStorage.getItem("currentUserId")){
+    return true;
+  }
+  else{
+    return false;
+  }
 
   return true;
 

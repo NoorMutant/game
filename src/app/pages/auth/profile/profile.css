@@ -1,0 +1,15 @@
+
+.reset {
+    margin: 10% auto;
+
+    button{
+    width: 150px;
+    color: rgb(255, 89, 0);
+    background-color: black;
+    border-radius: 10px;
+    }
+}
+.reset button:hover{
+    background-color: rgb(255, 89, 0);
+    color: black;
+}

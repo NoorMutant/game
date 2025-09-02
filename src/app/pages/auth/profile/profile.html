@@ -1,5 +1,5 @@
 <div class=" barlow-semi-condensed-bold">
-  <p>Update Profile</p>
+  <p>Update Username</p>
   
   <form #myForm="ngForm" (ngSubmit)="attemptNameChange()" class=" signup barlow-semi-condensed-thin">
     <input 
@@ -7,7 +7,7 @@
       maxlength="18"
       minlength="5"
       [(ngModel)]="userName" 
-      placeholder="Enter Username" 
+      placeholder="Enter New Username" 
       required 
       (input)="clearMessages()"
       autocomplete="username" />
@@ -17,17 +17,20 @@
       minlength="9"
       maxlength="25"
       [(ngModel)]="userPassword" 
-      placeholder="Enter Password" 
+      placeholder="Enter Current Password" 
       type="password" 
       required 
       (input)="clearMessages()"
       autocomplete="current-password" />
     
-    <button type="submit" [disabled]="myForm.invalid">Update</button>
+    <button type="submit" [disabled]="myForm.invalid">Update Username</button>
     
     <button (click)="goback()">Go Back</button>
   </form>
-
+  <div class="reset">
+    <button (click)="resetCurrentScore()">Reset Current Score</button>
+    <button (click)="resetHighScore()">Reset High Score</button>
+  </div>
   <!-- Error message display -->
   <div class="message-container">
     <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>

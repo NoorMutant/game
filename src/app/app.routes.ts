@@ -8,7 +8,7 @@ import { Signup } from './pages/auth/signup/signup';
 import { Profile } from './pages/auth/profile/profile';
 import { preventBackGuard } from './guards/prevent-back-guard';
 import { flowSafetyGuard } from './guards/flow-safety-guard';
-import { Gallery } from './gallery/gallery';
+import { Gallery } from './pages/gallery/gallery';
 
 
 export const routes: Routes = [
@@ -24,28 +24,15 @@ export const routes: Routes = [
         canActivate:[flowSafetyGuard],
 
     },
-
-    {
-        path:"user-selected/:selected",
-        component: UserSelected,
-        canActivate:[flowSafetyGuard],
-        // runGuardsAndResolvers: 'always'
-    },
-    {
-        path:"result/:selected",
-        component: Result,
-        canActivate:[flowSafetyGuard],
-        // runGuardsAndResolvers: 'always'
-    },
     {
         path:"login",
         component: Login,
-        canActivate:[flowSafetyGuard]
+        // canActivate:[flowSafetyGuard]
     },
     {
         path:"signup",
         component: Signup,
-        canActivate:[flowSafetyGuard]
+        // canActivate:[flowSafetyGuard]
     },
     {
         path:"profile",
@@ -57,14 +44,26 @@ export const routes: Routes = [
         component: Start ,
         canActivate:[flowSafetyGuard]
     },
+    // {
+    //     path:"user-selected/:selected",
+    //     component: UserSelected,
+    //     canActivate:[flowSafetyGuard],
+    //     // runGuardsAndResolvers: 'always'
+    // },
+    // {
+    //     path:"result/:selected",
+    //     component: Result,
+    //     canActivate:[flowSafetyGuard],
+    //     // runGuardsAndResolvers: 'always'
+    // },
 
     
 ];
 
 
 // @NgModule({
-//     imports: [
-//         // ✅ NOW pass the routes
+    //     imports: [
+        //         // ✅ NOW pass the routes
 //         RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
 //     ],
 //     exports: [RouterModule]

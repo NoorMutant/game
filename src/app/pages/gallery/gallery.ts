@@ -1,5 +1,5 @@
 import { Component, Injectable } from '@angular/core';
-import { Apifetch } from '../service/apifetch';
+import { Apifetch } from '../../service/apifetch';
 import { BehaviorSubject, Subject, Subscription, switchMap } from 'rxjs';
 import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,13 +11,14 @@ import { Router } from '@angular/router';
 })
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,],
   templateUrl: './gallery.html',
   styleUrl: './gallery.css'
 })
 export class Gallery {
   private rawData: any;
   private fetchTrigger$ = new Subject<number>();
+  apiError:boolean = false;
   imageData:any;
   searchTerm: string = "";
   filteredData: any[] = [];
@@ -42,6 +43,7 @@ export class Gallery {
           this.getImageData()
         },
         error: (err) => {
+          this.apiError = true;
           console.error('Error fetching images:', err);
         }
       });

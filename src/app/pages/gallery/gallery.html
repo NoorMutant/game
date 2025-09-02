@@ -11,7 +11,9 @@
       (input)="onSearch()"
     >
 </div>
-<h1 *ngIf="filteredData.length <1">No Search Result</h1>
+@if (filteredData.length <1) {
+  <h1>No Search Result</h1>
+}
 <section id="image-gallery">
     <!-- <div class="images-wrapper"> -->
     <!-- </div> -->
@@ -20,8 +22,17 @@
         <div class="overlay barlow-semi-condensed-thin">{{ item.name }}</div>
       </div>
 </section>
-<div class="pagination" *ngIf="searchTerm==''">
-    <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
-    <button (click)="incrementPage()" class="rules">Next Page</button>
-    <button (click)="gohome()" class="rules">Home</button>
-</div>
+@if(searchTerm=='' && apiError==false)
+{
+  <div class="pagination">
+      <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
+      <button (click)="incrementPage()" class="rules">Next Page</button>
+      <button (click)="gohome()" class="rules">Home</button>
+  </div>
+}
+@else{
+  <div class="pagination">
+      <button (click)="gohome()" class="rules">Home</button>
+  </div>
+
+}
