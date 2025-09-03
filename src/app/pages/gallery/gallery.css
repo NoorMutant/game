@@ -3,6 +3,21 @@ h1,p{
     width: 100%;
     margin: auto;
 }
+.collection-search{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+    button{
+        border-radius: 10px;
+        background-color: aqua;
+        color: red;
+    }
+    button:disabled{
+        background-color: red;
+        color: aquamarine;
+    }
+}
 
 .head{
 justify-content: center;

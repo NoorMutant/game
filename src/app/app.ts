@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, signal,OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, signal,OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
@@ -14,7 +14,7 @@ import { Apifetch } from './service/apifetch';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit,OnDestroy {
   userName:string = "";
   userAge:number|null = null;
   score: number =0;
@@ -101,5 +101,11 @@ export class App {
       this.game.setHighScore(currentUser.highestScore || 0);
     }
   }
+}
+ngOnDestroy(): void {
+   this.sub.unsubscribe();
+   this.url.unsubscribe();
+   this.highSub.unsubscribe();
+   this.currentName.unsubscribe();
 }
 }

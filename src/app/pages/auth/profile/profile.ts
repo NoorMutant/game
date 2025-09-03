@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Game } from '../../../service/game';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })
-export class Profile {
+export class Profile implements OnInit,OnDestroy{
   UserFound: Boolean = false;
   userName: string = "";
   userPassword: string = "";
@@ -163,6 +163,7 @@ export class Profile {
     this.pullUserData()
     const user = this.allUsersData.findIndex(user => user.id === Number(this.currentUserId));
     this.allUsersData[user].highestScore = 0;
+    // this.allUsersData[user].currentScore = 0; ////un comment if wanna reset current on highscore reset too
     this.pushUserData(this.allUsersData)
     console.log(`Highscore updated`)
     this.game.setHighScore(0);
@@ -179,4 +180,7 @@ export class Profile {
       this.allUsersData = JSON.parse(storedData);
     }
   }
+  ngOnDestroy(): void {
+   this.currentName.unsubscribe();
+}
 }

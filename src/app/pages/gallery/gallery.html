@@ -1,38 +1,37 @@
 <div class="head">
-    <h1 class="barlow-semi-condensed-bold">Gallery</h1>
-    <p class="barlow-semi-condensed-bold">Current Page Num {{this.page_num}}</p>
-
-    <input 
-    maxlength="25"
-      type="text" 
-      name="tayyab bhai"
-      placeholder="Search the name" 
-      [(ngModel)]="searchTerm"
-      (input)="onSearch()"
-    >
+  <h1 class="barlow-semi-condensed-bold">Gallery</h1>
+  <p class="barlow-semi-condensed-bold">Current Page Num {{this.page_num}}</p>
+  <!--inside input [(ngModel)]="searchTerm" (input)="onSearch()"  -->
+  <form #myForm="ngForm" (ngSubmit)="searchCollection(mysearchterm.value)"
+    class="collection-search barlow-semi-condensed-thin">
+    <input  [(ngModel)]="searchTerm" maxlength="30" minlength="2" type="text" name="tayyab_bhai" placeholder="Search the collection" #mysearchterm required>
+    <button type="submit" [disabled]="myForm.invalid">
+      Search Images Collection
+    </button>
+  </form>
 </div>
-@if (filteredData.length <1) {
-  <h1>No Search Result</h1>
-}
-<section id="image-gallery">
+@if (filteredData.length <1) { <h1>No Search Result</h1>
+  }
+  <section id="image-gallery">
     <!-- <div class="images-wrapper"> -->
     <!-- </div> -->
-      <div *ngFor="let item of filteredData" class="images">
-       <a target="_blank" [href]="item.url"><img [src]="item.url" [alt]="item.name"></a> 
-        <div class="overlay barlow-semi-condensed-thin">{{ item.name }}</div>
-      </div>
-</section>
-@if(searchTerm=='' && apiError==false)
-{
+    <div *ngFor="let item of filteredData" class="images">
+      <a target="_blank" [href]="item.url"><img [src]="item.url" [alt]="item.name"></a>
+      <div class="overlay barlow-semi-condensed-thin">{{ item.name }}</div>
+    </div>
+  </section>
+  <!-- @if(searchTerm=='' && apiError==false) -->
+  @if(apiError==false)
+  {
   <div class="pagination">
-      <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
-      <button (click)="incrementPage()" class="rules">Next Page</button>
-      <button (click)="gohome()" class="rules">Home</button>
+    <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
+    <button (click)="incrementPage()" class="rules">Next Page</button>
+    <button (click)="gohome()" class="rules">Home</button>
   </div>
-}
-@else{
+  }
+  @else{
   <div class="pagination">
-      <button (click)="gohome()" class="rules">Home</button>
+    <button (click)="gohome()" class="rules">Home</button>
   </div>
 
-}
+  }
