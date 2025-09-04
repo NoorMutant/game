@@ -1,16 +1,14 @@
 import { ChangeDetectorRef, Component, signal,OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgIf, NgStyle } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Game } from './service/game';
 import { Apifetch } from './service/apifetch';
 
-
-
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgIf, FormsModule],
+  imports: [RouterOutlet, NgIf, FormsModule,CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -26,6 +24,7 @@ export class App implements OnInit,OnDestroy {
   UserFound:Boolean=false;
   highest:number = 0;
   onGallery:boolean=false;
+
 
 
   constructor(private game: Game,public router:Router,private gallery:Apifetch) {

@@ -1,5 +1,13 @@
 
-
+#main-container-gallery{
+    display: flex;
+    row-gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    color: white;
+    width: 80%;
+}
 #main_container {
     display: flex;
     row-gap: 5px;
@@ -22,11 +30,12 @@
     @media screen and (max-width: 600px) {
         width: 100%;
     }
+
 }
+
 
 .main-board {
     width: 100%;
-    
     border: 3px solid var(--borders);
     border-radius: 5px;
 }

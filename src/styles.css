@@ -8,7 +8,9 @@
   --scissors_rgb:hsl(39, 89%, 49%);
   --paper_rgb:hsl(230, 89%, 62%);
   --rock_rgb:rgb(220, 46, 78);
-
+  --disabled-back:rgba(221, 133, 149, 0.896);
+  
+  --hover-text:aqua;
   --dark_text: hsl(229, 25%, 31%);
   --score_text: hsl(229, 64%, 46%);
   --header_outline: hsl(217, 16%, 45%);

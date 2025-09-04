@@ -1,37 +1,52 @@
-<div class="head">
-  <h1 class="barlow-semi-condensed-bold">Gallery</h1>
-  <p class="barlow-semi-condensed-bold">Current Page Num {{this.page_num}}</p>
-  <!--inside input [(ngModel)]="searchTerm" (input)="onSearch()"  -->
-  <form #myForm="ngForm" (ngSubmit)="searchCollection(mysearchterm.value)"
+<section id="gallery">
+
+  <div class="head">
+    <h1 class="barlow-semi-condensed-bold">Gallery</h1>
+    <p class="barlow-semi-condensed-bold">Current Page Num {{this.page_num}}</p>
+    <!--inside input [(ngModel)]="searchTerm" (input)="onSearch()"  -->
+    <form #myForm="ngForm" (ngSubmit)="searchCollection(mysearchterm.value)"
     class="collection-search barlow-semi-condensed-thin">
-    <input  [(ngModel)]="searchTerm" maxlength="30" minlength="2" type="text" name="tayyab_bhai" placeholder="Search the collection" #mysearchterm required>
-    <button type="submit" [disabled]="myForm.invalid">
+    <input  [(ngModel)]="searchTerm"  (ngModelChange)="searchWatcher(searchTerm)" maxlength="30" minlength="2" type="text" name="tayyab_bhai" placeholder="Search the collection" #mysearchterm required>
+    <!-- <button type="submit" [disabled]="myForm.invalid">
       Search Images Collection
-    </button>
+    </button> -->
   </form>
 </div>
-@if (filteredData.length <1) { <h1>No Search Result</h1>
-  }
-  <section id="image-gallery">
-    <!-- <div class="images-wrapper"> -->
+@if (filteredData.length <1) { <h1 style="color: red;">No Search Result</h1>
+}
+<div class="image-gallery">
+  <!-- <div class="images-wrapper"> -->
     <!-- </div> -->
     <div *ngFor="let item of filteredData" class="images">
-      <a target="_blank" [href]="item.url"><img [src]="item.url" [alt]="item.name"></a>
       <div class="overlay barlow-semi-condensed-thin">{{ item.name }}</div>
+      <a target="_blank" [href]="item.url">
+        <img [src]="item.url" [alt]="item.name">
+
+      </a>
     </div>
-  </section>
+  </div>
   <!-- @if(searchTerm=='' && apiError==false) -->
+  <!-- <div class="fixed-pagination"> -->
   @if(apiError==false)
   {
-  <div class="pagination">
-    <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
-    <button (click)="incrementPage()" class="rules">Next Page</button>
-    <button (click)="gohome()" class="rules">Home</button>
-  </div>
-  }
-  @else{
-  <div class="pagination">
-    <button (click)="gohome()" class="rules">Home</button>
-  </div>
-
-  }
+      <div class="custom-pagination">
+        <button [disabled]="this.page_num <2 || this.page_num-10 <2" (click)="decrementPage(10)" class="rules short-rules">-10</button>
+        <button [disabled]="this.page_num <2 || this.page_num-5 <1" (click)="decrementPage(5)" class="rules short-rules">-5</button>
+        <!-- <button *ngFor="let x of getPages()">{{ x }}</button> -->
+        <button [disabled]="this.page_num+5 > this.totalPages" (click)="incrementPage(5)" class="rules short-rules">+5</button>
+        <button [disabled]="this.page_num +10> this.totalPages" (click)="incrementPage(10)" class="rules short-rules">+10</button>
+      </div>
+      <div class="pagination">
+        <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
+        <button (click)="gohome()" class="rules">Home</button>
+        <button [disabled]="this.apifetch.count() == 1 && this.page_num >= this.totalPages"  (click)="incrementPage()" class="rules">Next Page</button>
+      </div>
+    }
+    @else{
+      <div class="pagination">
+        <button (click)="gohome()" class="rules">Home</button>
+      </div>
+    }
+    <!-- </div> -->
+  
+</section>

@@ -14,8 +14,8 @@ export class Apifetch {
     // private mySearchItem = new BehaviorSubject<string>("");
 
   myUrl$ = this.myUrlSubject.asObservable();
-    AccessKey = "abc";
-    SecretKey = "abc";
+    AccessKey = "uBUNdEkUx1u5gSTrDAqThdRF7MamJ3Pl_Um2yqTuu-E";
+    SecretKey = "8Wi6gV-SCVDJHvHR7tG3mk3cNyLCk4cKgQwwuAYdQMQ";
     private apiUrl = 'https://api.unsplash.com/photos/?';
     private apiSearchUrl = 'https://api.unsplash.com/search/photos/?';
   constructor(private http: HttpClient,private router:Router){}
@@ -25,8 +25,7 @@ export class Apifetch {
     const url = `${this.apiUrl}page=${page_num}&per_page=30`;
     const headers = new HttpHeaders({
       Authorization: `Client-ID ${this.AccessKey}`,
-      Orientation:`landscape`,
-      // size: `small`
+
     });
     if (this.count() ==0)
       {
