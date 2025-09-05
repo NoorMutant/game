@@ -85,7 +85,7 @@ div.head h1 {
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    height: 70vh;
+    height: 70vh;                               
     gap: 10px;
     margin: auto;
     align-items: center;
@@ -95,6 +95,7 @@ div.head h1 {
 .overlay {
         width: 60px;
         overflow: hidden;
+        pointer-events: none;
     height: 60px;
     position: absolute;
     color: white;
@@ -140,7 +141,11 @@ div.head h1 {
 .custom-pagination{
     margin: auto;
     width: 100%;
-    display: flex
+    display: flex;
+    button:disabled{
+        display:none;
+        
+    }
 ;
 gap:15px;
     flex-direction: row;

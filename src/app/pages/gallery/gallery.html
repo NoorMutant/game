@@ -24,17 +24,30 @@
 
       </a>
     </div>
+    
   </div>
   <!-- @if(searchTerm=='' && apiError==false) -->
   <!-- <div class="fixed-pagination"> -->
   @if(apiError==false)
   {
+
       <div class="custom-pagination">
-        <button [disabled]="this.page_num <2 || this.page_num-10 <2" (click)="decrementPage(10)" class="rules short-rules">-10</button>
-        <button [disabled]="this.page_num <2 || this.page_num-5 <1" (click)="decrementPage(5)" class="rules short-rules">-5</button>
+        <button [disabled]="this.page_num == 1" (click)="jumptostart()" class="rules short-rules">Start</button>
+
+        @for (item of [3,2,1]; track $index) { 
+          <button [disabled]="this.page_num <2 || this.page_num-item <1" (click)="jumptostart()" class="rules short-rules">{{this.page_num-item}}</button>
+        }
+        <!-- <button [disabled]="this.page_num <2 || this.page_num-3 <3" (click)="decrementPage(3)" class="rules short-rules">{{this.page_num-3}}</button>
+        <button [disabled]="this.page_num <2 || this.page_num-2 <2" (click)="decrementPage(2)" class="rules short-rules">{{this.page_num-2}}</button> -->
         <!-- <button *ngFor="let x of getPages()">{{ x }}</button> -->
-        <button [disabled]="this.page_num+5 > this.totalPages" (click)="incrementPage(5)" class="rules short-rules">+5</button>
-        <button [disabled]="this.page_num +10> this.totalPages" (click)="incrementPage(10)" class="rules short-rules">+10</button>
+        <button [disabled] class="rules short-rules" style="background-color: blueviolet;">{{this.page_num}}</button>
+        @for (item of [1,2,3]; track $index) {
+          <button [disabled]="this.page_num+item > this.totalPages" (click)="incrementPage(item)" class="rules short-rules">{{this.page_num+item}}</button>
+        }
+        <button [disabled]="this.page_num == this.totalPages" (click)="jumptofinish()" class="rules short-rules">End</button>
+
+        <!-- <button [disabled]="this.page_num+2 > this.totalPages" (click)="incrementPage(2)" class="rules short-rules">{{this.page_num+2}}</button>
+        <button [disabled]="this.page_num+3 > this.totalPages" (click)="incrementPage(3)" class="rules short-rules">{{this.page_num+3}}</button> -->
       </div>
       <div class="pagination">
         <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>

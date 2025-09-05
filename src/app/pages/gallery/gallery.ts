@@ -5,13 +5,12 @@ import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root'
 })
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule, FormsModule,],
+  imports: [CommonModule, FormsModule],
   templateUrl: './gallery.html',
   styleUrl: './gallery.css'
 })
@@ -61,28 +60,32 @@ export class Gallery implements OnInit, OnDestroy {
     this.fetchTrigger$.next(this.page_num);
   }
 
+
   incrementPage(x:number=1) {
+    
     this.page_num += x;
+    this.fetchTrigger$.next(this.page_num);
+    
+  }
+  jumptostart(){
+    this.page_num =1;
+    this.fetchTrigger$.next(this.page_num);
+  }
+  jumptofinish(){
+    this.page_num = this.totalPages;
     this.fetchTrigger$.next(this.page_num);
   }
   decrementPage(x:number=1) {
-    if (this.page_num > 1) {
+   
       this.page_num -= x;
       this.fetchTrigger$.next(this.page_num);
-    }
+    
   }
-
-  getPages(): number[] {
-  const pages: number[] = [];
-  for (let x = this.page_num; x < this.page_num + 5; x++) {
-    pages.push(x);
-  }
-  return pages;
-}
 
   getImageData() {
     if (this.apifetch.count() == 1) {
-      this.totalPages =this.rawData.results.total_pages;
+      this.totalPages =this.rawData.total_pages;
+      console.log(this.totalPages)
       this.rawData = this.rawData.results;
       const searchArray = this.search.split(" ");
       this.imageData = this.rawData
@@ -130,6 +133,7 @@ export class Gallery implements OnInit, OnDestroy {
       this.filteredData=[];
       this.fetchTrigger$.next(this.page_num);
   }
+
   gohome() {
     this.apifetch.setMyUrl(false)
     this.router.navigate([''])
