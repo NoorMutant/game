@@ -14,8 +14,8 @@ export class Apifetch {
     // private mySearchItem = new BehaviorSubject<string>("");
 
   myUrl$ = this.myUrlSubject.asObservable();
-    AccessKey = "uBUNdEkUx1u5gSTrDAqThdRF7MamJ3Pl_Um2yqTuu-E";
-    SecretKey = "8Wi6gV-SCVDJHvHR7tG3mk3cNyLCk4cKgQwwuAYdQMQ";
+    AccessKey = "uabc";
+    SecretKey = "8abc";
     private apiUrl = 'https://api.unsplash.com/photos/?';
     private apiSearchUrl = 'https://api.unsplash.com/search/photos/?';
   constructor(private http: HttpClient,private router:Router){}

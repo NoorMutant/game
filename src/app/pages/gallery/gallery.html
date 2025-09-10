@@ -1,3 +1,32 @@
+@if (videoUrl && !videoError) {
+<div class="youtube-container">
+  <youtube-player [videoId]="youtubeUrl" suggestedQuality="highres" [width]="640" [height]="390"></youtube-player>
+
+  <button (click)="closeMediaPlayer()">
+    <img class="close_button" src="/icons/icon-close.svg" alt="close icon" />
+  </button>
+  @if (videoError && videoUrl) {
+
+  <p style="color: red;">Invalid or unavailable video</p>
+  }
+</div>
+}
+@else if (uploadedFile !=null && isSubmitted) {
+<div class="youtube-container">
+  @if (uploadedFile?.type?.startsWith('image/')) {
+  <img [src]="filePreview" style="max-width:640px;border-radius:8px;" />
+  }
+  @else if (uploadedFile?.type?.startsWith('video/')) {
+  <video [src]="filePreview" controls style="max-width:640px;border-radius:8px;"></video>
+  }
+  <button (click)="closeMediaPlayer()">
+    <img class="close_button" src="/icons/icon-close.svg" alt="close icon" />
+  </button>
+</div>
+}
+@else {
+
+
 <section id="gallery">
 
   <div class="head">
@@ -5,61 +34,97 @@
     <p class="barlow-semi-condensed-bold">Current Page Num {{this.page_num}}</p>
     <!--inside input [(ngModel)]="searchTerm" (input)="onSearch()"  -->
     <form #myForm="ngForm" (ngSubmit)="searchCollection(mysearchterm.value)"
-    class="collection-search barlow-semi-condensed-thin">
-    <input  [(ngModel)]="searchTerm"  (ngModelChange)="searchWatcher(searchTerm)" maxlength="30" minlength="2" type="text" name="tayyab_bhai" placeholder="Search the collection" #mysearchterm required>
-    <!-- <button type="submit" [disabled]="myForm.invalid">
+      class="collection-search barlow-semi-condensed-thin">
+      <input [(ngModel)]="searchTerm" (ngModelChange)="searchWatcher(searchTerm)" maxlength="30" minlength="2"
+        type="text" name="tayyab_bhai" placeholder="Search the collection" #mysearchterm required>
+      <!-- <button type="submit" [disabled]="myForm.invalid">
       Search Images Collection
     </button> -->
-  </form>
-</div>
-@if (filteredData.length <1) { <h1 style="color: red;">No Search Result</h1>
-}
-<div class="image-gallery">
-  <!-- <div class="images-wrapper"> -->
-    <!-- </div> -->
-    <div *ngFor="let item of filteredData" class="images">
-      <div class="overlay barlow-semi-condensed-thin">{{ item.name }}</div>
-      <a target="_blank" [href]="item.url">
-        <img [src]="item.url" [alt]="item.name">
-
-      </a>
-    </div>
-    
+    </form>
   </div>
-  <!-- @if(searchTerm=='' && apiError==false) -->
-  <!-- <div class="fixed-pagination"> -->
-  @if(apiError==false)
-  {
+  @if (filteredData.length <1) { <h1 style="color: red;">No Search Result</h1>
+    }
+    <div class="image-gallery">
+      <!-- <div class="images-wrapper"> -->
+      <!-- </div> -->
+      <div *ngFor="let item of filteredData" class="images">
+        <div class="overlay barlow-semi-condensed-thin">{{ item.name }}</div>
+        <a target="_blank" [href]="item.url">
+          <img [src]="item.url" [alt]="item.name">
 
-      <div class="custom-pagination">
-        <button [disabled]="this.page_num == 1" (click)="jumptostart()" class="rules short-rules">Start</button>
+        </a>
+      </div>
 
-        @for (item of [3,2,1]; track $index) { 
-          <button [disabled]="this.page_num <2 || this.page_num-item <1" (click)="jumptostart()" class="rules short-rules">{{this.page_num-item}}</button>
-        }
-        <!-- <button [disabled]="this.page_num <2 || this.page_num-3 <3" (click)="decrementPage(3)" class="rules short-rules">{{this.page_num-3}}</button>
+    </div>
+    <!-- @if(searchTerm=='' && apiError==false) -->
+    <!-- <div class="fixed-pagination"> -->
+    @if(apiError==false)
+    {
+
+    <div class="custom-pagination">
+      <button [disabled]="this.page_num == 1" (click)="jumptostart()" class="rules short-rules">Start</button>
+
+      @for (item of [3,2,1]; track $index) {
+      <button [disabled]="this.page_num <2 || this.page_num-item <1" (click)="jumptostart()"
+        class="rules short-rules">{{this.page_num-item}}</button>
+      }
+      <!-- <button [disabled]="this.page_num <2 || this.page_num-3 <3" (click)="decrementPage(3)" class="rules short-rules">{{this.page_num-3}}</button>
         <button [disabled]="this.page_num <2 || this.page_num-2 <2" (click)="decrementPage(2)" class="rules short-rules">{{this.page_num-2}}</button> -->
-        <!-- <button *ngFor="let x of getPages()">{{ x }}</button> -->
-        <button [disabled] class="rules short-rules" style="background-color: blueviolet;">{{this.page_num}}</button>
-        @for (item of [1,2,3]; track $index) {
-          <button [disabled]="this.page_num+item > this.totalPages" (click)="incrementPage(item)" class="rules short-rules">{{this.page_num+item}}</button>
-        }
-        <button [disabled]="this.page_num == this.totalPages" (click)="jumptofinish()" class="rules short-rules">End</button>
+      <!-- <button *ngFor="let x of getPages()">{{ x }}</button> -->
+      <button [disabled] class="rules short-rules" style="background-color: blueviolet;">{{this.page_num}}</button>
+      @for (item of [1,2,3]; track $index) {
+      <button [disabled]="this.page_num+item > this.totalPages" (click)="incrementPage(item)"
+        class="rules short-rules">{{this.page_num+item}}</button>
+      }
+      <button [disabled]="this.page_num == this.totalPages" (click)="jumptofinish()"
+        class="rules short-rules">End</button>
 
-        <!-- <button [disabled]="this.page_num+2 > this.totalPages" (click)="incrementPage(2)" class="rules short-rules">{{this.page_num+2}}</button>
+      <!-- <button [disabled]="this.page_num+2 > this.totalPages" (click)="incrementPage(2)" class="rules short-rules">{{this.page_num+2}}</button>
         <button [disabled]="this.page_num+3 > this.totalPages" (click)="incrementPage(3)" class="rules short-rules">{{this.page_num+3}}</button> -->
-      </div>
-      <div class="pagination">
-        <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
-        <button (click)="gohome()" class="rules">Home</button>
-        <button [disabled]="this.apifetch.count() == 1 && this.page_num >= this.totalPages"  (click)="incrementPage()" class="rules">Next Page</button>
-      </div>
+    </div>
+    <div class="pagination">
+      <button [disabled]="this.page_num <2" (click)="decrementPage()" class="rules">previous Page</button>
+      <button (click)="gohome()" class="rules">Home</button>
+      <button [disabled]="this.apifetch.count() == 1 && this.page_num >= this.totalPages" (click)="incrementPage()"
+        class="rules">Next Page</button>
+    </div>
     }
     @else{
-      <div class="pagination">
-        <button (click)="gohome()" class="rules">Home</button>
-      </div>
+    <div class="pagination">
+      <button (click)="gohome()" class="rules">Home</button>
+    </div>
     }
-    <!-- </div> -->
-  
+    <form [formGroup]="inputMediaForm" (ngSubmit)="onSubmit()" class="media-form">
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" formControlName="Toggler" />
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-text">
+          {{ inputMediaForm.get('Toggler')?.value ? 'File Mode' : 'YouTube Mode' }}
+        </span>
+      </div>
+
+      <div class="input-row">
+        <div class="input-wrapper">
+          @if (inputMediaForm.get('Toggler')?.value) {
+          <input type="file" accept="image/*,video/*" formControlName="mediaFile" (change)="onFileSelected($event)"
+            class="input-field" />
+          } @else {
+          <input type="url" placeholder="Enter YouTube URL" formControlName="youtubeUrl" class="input-field" />
+          }
+        </div>
+        <div class="error-wrapper">
+          @if(inputMediaForm.get('youtubeUrl')?.invalid && inputMediaForm.get('youtubeUrl')?.touched) {
+          <p class="error-text">Invalid URL</p>
+          }
+        </div>
+        <button class="submit-button"
+          [disabled]="inputMediaForm.invalid || (inputMediaForm.get('Toggler')?.value && !isFileSelected)">
+          Submit
+        </button>
+      </div>
+    </form>
 </section>
+
+}

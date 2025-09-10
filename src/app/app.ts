@@ -24,9 +24,7 @@ export class App implements OnInit,OnDestroy {
   UserFound:Boolean=false;
   highest:number = 0;
   onGallery:boolean=false;
-
-
-
+  
   constructor(private game: Game,public router:Router,private gallery:Apifetch) {
     this.sub = this.game.score$.subscribe(score =>{
     this.score = score;

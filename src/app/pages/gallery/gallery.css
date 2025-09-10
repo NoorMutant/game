@@ -1,5 +1,5 @@
 #gallery{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 h1,
 p {
@@ -11,7 +11,7 @@ p {
 }
 
 div.head h1 {
-    font-size: 10vw;
+    font-size: 4vw;
     font-weight: 700;
 }
 
@@ -37,7 +37,7 @@ div.head h1 {
     justify-content: center;
     align-items: center;
     margin: auto;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -151,7 +151,7 @@ gap:15px;
     flex-direction: row;
     border: 0px;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 .pagination {
    
@@ -176,30 +176,187 @@ gap:15px;
 
     @media screen and (min-width: 450px) {
         .images,.overlay{
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
         font-size:12px;
     }
     }
     @media screen and (min-width: 800px) {
         .images,.overlay{
-        width: 70px;
-        height: 70px;
+        width: 65px;
+        height: 65px;
         font-size:12px;
     }
 }
 
     @media screen and (min-width: 1220px) {
         .images,.overlay{
-        width: 80px;
-        height: 80px;
+        width: 75px;
+        height: 75px;
         font-size:12px;
     }
 }
     @media screen and (min-width: 1500px) {
         .images,.overlay{
-        width: 180px;
-        height: 180px;
+        width: 95px;
+        height: 95px;
         font-size:14px;
     }
     }
+
+.youtube-container {
+    position: fixed;                  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;                    
+    pointer-events: auto; 
+      
+    button{
+            background-color: pink;
+    border-radius: 25px;
+    width: 100px;
+    height: 50px;
+    }          
+}
+
+/* forms and button */
+
+
+.media-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  /* width: 100%;
+  max-width: 700px; */
+  margin: 10px auto;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.switch input:checked + .slider {
+  background-color: #4cafef;
+  box-shadow: 0 0 8px #4cafef;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+/* Toggle value text */
+.toggle-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input row styling */
+.input-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  gap: 12px;
+}
+
+/* .input-wrapper {
+  flex: 1;
+} */
+
+.input-field {
+  width: 30vw;
+  padding: 8px 10px;
+  /* border: 2px solid white; */
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: #4cafef;
+  box-shadow: 0 0 5px rgba(76, 175, 239, 0.5);
+}
+
+/* Error message */
+.error-wrapper {
+  flex: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin: 0;
+}
+
+.submit-button {
+  padding: 8px 16px;
+  background-color: #4cafef;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #1d8bdd;
+}

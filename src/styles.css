@@ -34,10 +34,10 @@
 
 body{
     background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
-
-    height: 100vh !important;
+    height: auto !important;
+    /* height: 100vh !important; */
     width: 100% !important;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .button_wrapper{
@@ -292,5 +292,5 @@ a:hover{
     height: 30px;
 }
 
-html, body { height: 100%; }
+/* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
